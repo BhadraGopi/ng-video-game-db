@@ -1,0 +1,71 @@
+<form [formGroup]="gameForm" (ngSubmit)="onSubmit()">
+  <div>
+    <div>
+      <div><h1 class="heading">Add the new game here.</h1></div>
+
+      <div>
+        <label> Game Name:</label>
+      </div>
+      <div>
+        <input formControlName="Name" />
+      </div>
+      <div>
+        <label> Select the Genre:</label>
+      </div>
+      <div>
+        <mat-select formControlName="Genre" placeholder="Genre">
+          <mat-option *ngFor="let genre of genre">{{ genre }}</mat-option>
+        </mat-select>
+      </div>
+      <div>
+        <label> Platform:</label>
+      </div>
+      <div>
+        <mat-select formControlName="Platform" placeholder="platforms">
+          <mat-option>platforms</mat-option>
+        </mat-select>
+      </div>
+      <div>
+        <label> Rating:</label>
+      </div>
+      <div>
+        <app-ratingbar></app-ratingbar>
+      </div>
+      <div>
+        <label> Description:</label>
+      </div>
+      <div>
+        <input formControlName="Description" />
+      </div>
+      <div>
+        <label> Release Date:</label>
+      </div>
+      <div>
+        <input formControlName="Releasedate" />
+      </div>
+      <div>
+        <label> Website:</label>
+      </div>
+      <div>
+        <input formControlName="Website" />
+      </div>
+      <div>
+        <label> Similar to:</label>
+      </div>
+      <div>
+        <button formControlName="othergames">^</button>
+      </div>
+    </div>
+    <div>
+      <label> Select Thumbnail:</label>
+    </div>
+    <div><label formControlName="thumbnail">Auto complete</label></div>
+  </div>
+  <div></div>
+  <div class="close">
+    <button>Save Changes</button>
+  </div>
+  <div class="close">
+    <button (click)="onClose()">X</button>
+  </div>
+</form>
