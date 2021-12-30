@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { from } from 'rxjs';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { AddbuttonComponent } from '../addbutton/addbutton.component';
 @Component({
@@ -20,7 +19,7 @@ export class SearchBarComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.width = '80';
+    dialogConfig.minWidth = 80;
     this.dialog.open(AddbuttonComponent, dialogConfig);
   }
 }

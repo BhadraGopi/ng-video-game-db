@@ -38,5 +38,7 @@ export class AddbuttonComponent implements OnInit {
   onClose(): void {
     this.dialogbox.close();
   }
-  onSubmit() {}
+  onSubmit() {
+    console.log(this.gameForm.value);
+  }
 }

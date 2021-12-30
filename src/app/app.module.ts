@@ -21,7 +21,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RatingbarComponent } from './components/ratingbar/ratingbar.component';
 import { MatButtonModule } from '@angular/material/button';
-
+import { MatIconRegistry } from '@angular/material/icon';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +47,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatDialogModule,
     MatIconModule,
     MatButtonModule,
-
+    MatIconRegistry,
     GaugeModule.forRoot(),
   ],
   providers: [
