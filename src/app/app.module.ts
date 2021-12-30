@@ -16,8 +16,22 @@ import { HttpHeadersInterceptor } from './interceptors/http-headers.interceptor'
 import { HttpErrorsInterceptor } from './interceptors/http_errors.interceptors';
 import { DetailsComponent } from './components/details/details.component';
 import { GameTabsComponent } from './components/game-tabs/game-tabs.component';
+import { AddbuttonComponent } from './components/addbutton/addbutton.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RatingbarComponent } from './components/ratingbar/ratingbar.component';
+import { MatButtonModule } from '@angular/material/button';
+
 @NgModule({
-  declarations: [AppComponent, SearchBarComponent, HomeComponent, DetailsComponent, GameTabsComponent],
+  declarations: [
+    AppComponent,
+    SearchBarComponent,
+    HomeComponent,
+    DetailsComponent,
+    GameTabsComponent,
+    AddbuttonComponent,
+    RatingbarComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -25,10 +39,15 @@ import { GameTabsComponent } from './components/game-tabs/game-tabs.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    MatIconModule,
     MatTabsModule,
     MatFormFieldModule,
     MatSelectModule,
+    MatDialogModule,
+    ReactiveFormsModule,
+    MatDialogModule,
+    MatIconModule,
+    MatButtonModule,
+
     GaugeModule.forRoot(),
   ],
   providers: [
@@ -44,5 +63,6 @@ import { GameTabsComponent } from './components/game-tabs/game-tabs.component';
     },
   ],
   bootstrap: [AppComponent],
+  entryComponents: [AddbuttonComponent],
 })
 export class AppModule {}
