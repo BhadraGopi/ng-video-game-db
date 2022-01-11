@@ -5,7 +5,6 @@ import { AppComponent } from './app.component';
 import { GaugeModule } from 'angular-gauge';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatTabsModule } from '@angular/material/tabs';
-import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -21,7 +20,14 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RatingbarComponent } from './components/ratingbar/ratingbar.component';
 import { MatButtonModule } from '@angular/material/button';
-import { MatIconRegistry } from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { CommonModule } from '@angular/common';
+import { ProjectionComponent } from './components/projection/projection.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,8 +37,10 @@ import { MatIconRegistry } from '@angular/material/icon';
     GameTabsComponent,
     AddbuttonComponent,
     RatingbarComponent,
+    ProjectionComponent,
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -45,9 +53,13 @@ import { MatIconRegistry } from '@angular/material/icon';
     MatDialogModule,
     ReactiveFormsModule,
     MatDialogModule,
-    MatIconModule,
     MatButtonModule,
-    MatIconRegistry,
+    MatIconModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatNativeDateModule,
+    MatAutocompleteModule,
     GaugeModule.forRoot(),
   ],
   providers: [

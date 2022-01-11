@@ -3,71 +3,118 @@
     <div>
       <div>
         <div><h1 class="container-heading">Add the new game here.</h1></div>
+        <mat-form-field>
+          <mat-label>Game Name:</mat-label>
+          <input
+            matInput
+            class="container-inputs"
+            autocomplete="off"
+            formControlName="name"
+          />
+        </mat-form-field>
+        <div>
+          <mat-form-field>
+            <mat-label> Select the Genre:</mat-label>
+            <mat-select formControlName="genre" placeholder="Genre">
+              <mat-option *ngFor="let genre of genres" value="{{ genre }}">{{
+                genre
+              }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <mat-label> Select the Platform:</mat-label>
 
-        <div>
-          <label> Game Name:</label>
+            <mat-select
+              formControlName="platforms"
+              placeholder="Gaming Platform"
+            >
+              <mat-option
+                *ngFor="let platform of platforms"
+                value="{{ platform }}"
+                >{{ platform }}</mat-option
+              >
+            </mat-select>
+          </mat-form-field>
         </div>
         <div>
-          <input formControlName="Name" />
+          <mat-form-field>
+            <mat-label>Description:</mat-label>
+            <textarea matInput formControlName="description"></textarea>
+          </mat-form-field>
         </div>
         <div>
-          <label> Select the Genre:</label>
+          <mat-form-field appearance="fill">
+            <mat-label>Choose Release date</mat-label>
+            <input formControlName="date" matInput [matDatepicker]="picker" />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
         </div>
         <div>
-          <mat-select formControlName="Genre" placeholder="Genre">
-            <mat-option *ngFor="let genre of genre">{{ genre }}</mat-option>
-          </mat-select>
+          <mat-form-field>
+            <mat-label> Website:</mat-label>
+            <input matInput formControlName="website" />
+          </mat-form-field>
+        </div>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Similar Games:</mat-label>
+          <input
+            type="text"
+            placeholder="Pick one"
+            aria-label="Number"
+            matInput
+            [formControlName]="'othergames'"
+            [matAutocomplete]="auto"
+          />
+          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+            <mat-option
+              *ngFor="let option of similarGms"
+              [value]="option"
+              (onSelectionChange)="addSimilar(option)"
+            >
+              {{ option }}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+        <div [formGroup]="otherForm" *ngIf="showAddForm">
+          <div
+            formArrayName="items"
+            *ngFor="let item of itemcontrol['controls']; let i = index"
+          >
+            <div [formGroupName]="i">
+              <input
+                formControlName="gameName"
+                placeholder="Name of the game"
+              />
+
+              <button mat-raised-button (click)="deleteNewName(i)">
+                Delete this
+              </button>
+            </div>
+          </div>
+          <button mat-raised-button (click)="addItem()" type="button">
+            Add another one
+          </button>
         </div>
         <div>
-          <label> Platform:</label>
+          <mat-label> Select Thumbnail: </mat-label>
         </div>
         <div>
-          <mat-select formControlName="Platform" placeholder="platforms">
-            <mat-option>platforms</mat-option>
-          </mat-select>
+          <input matInput formControlName="thumbnail" type="file" />
         </div>
-        <div>
-          <label> Rating:</label>
-        </div>
-        <div>
-          <app-ratingbar></app-ratingbar>
-        </div>
-        <div>
-          <label> Description:</label>
-        </div>
-        <div>
-          <textarea formControlName="Description"></textarea>
-        </div>
-        <div>
-          <label> Release Date:</label>
-        </div>
-        <div>
-          <input formControlName="Releasedate" />
-        </div>
-        <div>
-          <label> Website:</label>
-        </div>
-        <div>
-          <input formControlName="Website" />
-        </div>
-        <div>
-          <label> Similar to:</label>
-        </div>
-        <div>
-          <label formControlName="othergames">auto complete</label>
-        </div>
+
+        <button mat-raised-button type="submit" [disabled]="gameForm.invalid">
+          Save Changes
+        </button>
+        <button mat-raised-button type="button" (click)="onClose()">
+          Cancel
+        </button>
       </div>
-      <div>
-        <label> Select Thumbnail:</label>
-        <button formControlName="thumbnail">+</button>
-      </div>
-    </div>
-    <div></div>
-    <div class="close">
-      <button type="submit">Save Changes</button>
-    </div>
-    <div class="close">
-      <button (click)="onClose()">X</button>
     </div>
   </form>
 </div>

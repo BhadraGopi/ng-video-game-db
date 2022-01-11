@@ -3,7 +3,6 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { HttpService } from 'src/app/services/http.service';
 import { Game } from 'src/app/services/models';
-
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
@@ -12,6 +11,7 @@ import { Game } from 'src/app/services/models';
 export class DetailsComponent implements OnInit, OnDestroy {
   gameRating = 0;
   gameId!: string;
+  gameName!: string;
   game!: Game;
   routeSub!: Subscription;
   gameSub!: Subscription;

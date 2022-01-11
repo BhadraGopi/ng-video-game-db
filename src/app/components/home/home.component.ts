@@ -3,7 +3,8 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { HttpService } from 'src/app/services/http.service';
 import { APIResponse, Game } from 'src/app/services/models';
-
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { AddbuttonComponent } from '../addbutton/addbutton.component';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -11,15 +12,17 @@ import { APIResponse, Game } from 'src/app/services/models';
 })
 export class HomeComponent implements OnInit, OnDestroy {
   public sort!: string;
-  public games!: Array<Game>;
+  public games!: Array<Game | any>;
+  public newGames!: Array<Game>;
   private routeSub!: Subscription;
   private gameSub!: Subscription;
   constructor(
     private httpService: HttpService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private dialog: MatDialog
   ) {}
-
+  buttonStatus!: string;
   ngOnInit(): void {
     this.routeSub = this.activatedRoute.params.subscribe((params: Params) => {
       if (params['game-search']) {
@@ -39,6 +42,32 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
   openGameDetails(id: string): void {
     this.router.navigate(['details', id]);
+  }
+
+  recievemsg($btnStatus: string) {
+    this.buttonStatus = $btnStatus;
+  }
+  showPopUp(): void {
+    if ((this.buttonStatus = 'on')) {
+      const dialogConfig = new MatDialogConfig();
+      dialogConfig.disableClose = true;
+      dialogConfig.autoFocus = true;
+      dialogConfig.minWidth = 80;
+      dialogConfig.data = {};
+      this.dialog
+        .open(AddbuttonComponent, dialogConfig)
+        .afterClosed()
+        .subscribe((x: any) => {
+          this.games.unshift({
+            name: x.name,
+            platforms: x.platforms,
+            genres: x.genre,
+            released: x.date,
+            website: x.website,
+          });
+          console.log(this.games);
+        });
+    }
   }
   ngOnDestroy(): void {
     if (this.gameSub) {

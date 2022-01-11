@@ -1,14 +1,22 @@
 .container {
-  display: grid;
+  display: flex;
+  padding: 25px 20px 25px;
 
   &-heading {
     font-size: medium;
-    font-weight: 700;
+    font-weight: 900;
+    font-size: x-large;
     color: blue;
+  }
+  &-inputs {
+    width: 100%;
   }
   &-labels {
     font-size: medium;
     font-weight: 400;
     color: blue;
   }
+}
+.example-full-width {
+  width: 100%;
 }
